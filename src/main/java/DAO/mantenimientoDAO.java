@@ -33,7 +33,7 @@ public class mantenimientoDAO {
         Connection connection = DbUtil.getConnection();
         String query = "insert into supervisor (mantenimiento.ID,mantenimiento.IDACTIVO,mantenimiento.DESCRIPCION,mantenimiento.PIEZASCAMBIADAS) values (?, ?, ?, ? );";
         PreparedStatement preparedStmt = null;
-        try {
+        try { 
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, mantenimiento.getId());
             preparedStmt.setInt(2, mantenimiento.getIdAcivo());
