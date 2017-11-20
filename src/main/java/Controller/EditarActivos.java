@@ -8,6 +8,7 @@ package Controller;
 import DAO.ActivoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,22 +32,7 @@ public class EditarActivos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditarActivos</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditarActivos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -70,8 +56,10 @@ public class EditarActivos extends HttpServlet {
             String ultimo_mantenimiento = request.getParameter("ultimo_mantenimiento");
             String estado = request.getParameter("estado");
             String prestado = request.getParameter("prestado");
+          
             //String calificacion = request.getParameter("calificacion");
             int calificacion = Integer.parseInt(request.getParameter("calificacion"));
+            String categoria =  request.getParameter("categoria");
 
             request.setAttribute("id_activo", id_activo);
             request.setAttribute("tipo", tipo);
@@ -80,11 +68,15 @@ public class EditarActivos extends HttpServlet {
             request.setAttribute("ultimo_mantenimiento", ultimo_mantenimiento);
             request.setAttribute("estado", estado);
             request.setAttribute("prestado", prestado);
+            request.setAttribute("categoria", categoria);
             request.setAttribute("calificacion", calificacion);
+            
 
             request.getRequestDispatcher("EditarActivo.jsp").forward(request, response);
 
         } catch (SQLException ex) {
+            Logger.getLogger(EditarActivos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(EditarActivos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -110,11 +102,14 @@ public class EditarActivos extends HttpServlet {
             String estado = (String) request.getParameter("estado");
             String prestado = (String) request.getParameter("prestado");
             int calificacion = Integer.parseInt(request.getParameter("calificacion"));
+            String categoria = (String) request.getParameter("categoria");
 
             ActivoDAO dao = new ActivoDAO();
-            dao.updateActivo(idActivo, tipo, fabricante, fechaC, mantenimiento, estado, prestado, calificacion);
+            dao.updateActivo(idActivo, tipo, fabricante, fechaC, mantenimiento, estado, prestado, calificacion, categoria);
 
         } catch (SQLException ex) {
+            Logger.getLogger(EditarActivos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(EditarActivos.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.sendRedirect("Activoo");

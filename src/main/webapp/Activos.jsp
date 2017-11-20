@@ -45,29 +45,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li class="active"><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+        <%@include file="Header.jsp" %>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -76,13 +54,16 @@
                 <div class="col-sm-8 text-left"> 
                     <h1>Activos</h1>
                     <div class="span12">&nbsp;</div>
-                    <button onclick="window.location.href = 'AnadirActivo.jsp'" type="button" type="button" class="btn-sm btn-success">Añadir Activo</button>
+                    <button onclick="window.location.href = 'ActivoCategoriaa?action=categoria'" type="button" type="button" class="btn-sm btn-success">Añadir Activo</button>
                     <button onclick="window.location.href = 'EliminarActivo?action=delete'" type="button" type="button" class="btn-sm btn-danger">Eliminar Activo</button>
                     <button onclick="window.location.href = 'BuscarActivo.jsp'" type="button" type="button" class="btn-sm btn-warning">Buscar Activo</button>
+                    <button onclick="window.location.href = 'NoPrestadoss?'" type="button" type="button" class="btn-sm btn-info">Activos No Prestados</button>
+                    <button onclick="window.location.href = 'Prestadoss?'" type="button" type="button" class="btn-sm btn-info">Activos Prestados</button>
+
                     <div class="span12">&nbsp;</div>
 
-                 
-           
+
+
                     <div class="container">           
                         <table class="table table-striped">
                             <tr>
@@ -94,31 +75,33 @@
                                 <th>Estado</th>
                                 <th>Prestado</th>
                                 <th>Calificacion</th>
+                                <th>Categoria</th>
                             </tr>
                             <% if (request.getAttribute("listaActivos") != null) {
-                                ArrayList<Activo> list = (ArrayList<Activo>) request.getAttribute("listaActivos");
-                                if (list != null)
-                                    for (Activo activo : list) {
+                                    ArrayList<Activo> list = (ArrayList<Activo>) request.getAttribute("listaActivos");
+                                    if (list != null)
+                                        for (Activo activo : list) {
 
 
-                        %>
-                        <tr>
-                            <td><%=activo.getId_activo()%></td>
-                            <td><%=activo.getTipo()%></td>
-                            <td><%=activo.getFabricante()%></td>
-                            <td><%=activo.getFecha_compra()%></td>
-                            <td><%=activo.getUltimo_mantenimiento()%></td>
-                            <td><%=activo.getEstado()%></td>
-                            <td><%=activo.getPrestado()%></td>
-                            <td><%=activo.getCalificacion()%></td>
-                            
-                            <td>
-                                <button onclick="window.location.href = 'EditarTablas?id=<%=activo.getId_activo()%>'" class="btn btn-info">Editar</button>
-                            </td>
-                        </tr>
-                        <% }
-                            }
-                        %>
+                            %>
+                            <tr>
+                                <td><%=activo.getId_activo()%></td>
+                                <td><%=activo.getTipo()%></td>
+                                <td><%=activo.getFabricante()%></td>
+                                <td><%=activo.getFecha_compra()%></td>
+                                <td><%=activo.getUltimo_mantenimiento()%></td>
+                                <td><%=activo.getEstado()%></td>
+                                <td><%=activo.getPrestado()%></td>
+                                <td><%=activo.getCalificacion()%></td>
+                                <td><%=activo.getCategoria()%></td>
+
+                                <td>
+                                    <button onclick="window.location.href = 'EditarActivos?id_activo=<%=activo.getId_activo()%>&tipo=<%=activo.getTipo()%>&fabricante=<%=activo.getFabricante()%>&fecha_compra=<%=activo.getFecha_compra()%>&ultimo_mantenimiento=<%=activo.getUltimo_mantenimiento()%>&estado=<%=activo.getEstado()%>&prestado=<%=activo.getPrestado()%>&calificacion=<%=activo.getCalificacion()%>&categoria=<%=activo.getCategoria()%>'" class="btn btn-info">Editar</button>
+                                </td>
+                            </tr>
+                            <% }
+                                }
+                            %>
                         </table>
                     </div>
                     <hr>

@@ -46,29 +46,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li class="active"><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+       <%@include file="Header.jsp"%>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -84,17 +62,17 @@
                             <div class="form-group">
                                 <label for="tipo">Id Activo:</label>
                                 <select class="form-control" name="eliminarActivo">
-                             <% 
-                                 if (request.getAttribute("activos") != null) { 
-                                    ArrayList<Activo> array = (ArrayList<Activo>) request.getAttribute("activos"); 
-                                     for (Activo a : array) {      
-                             %> 
-                             <option value="<%=a.getId_activo()%>"><%=a.getId_activo()%></option> 
-                             <%      } 
-                                 } 
-                             %> 
-                         </select>   
-                         <br> 
+                                    <%
+                                        if (request.getAttribute("activos") != null) {
+                                            ArrayList<Activo> array = (ArrayList<Activo>) request.getAttribute("activos");
+                                            for (Activo a : array) {
+                                    %> 
+                                    <option value="<%=a.getId_activo()%>"><%=a.getId_activo()%></option> 
+                                    <%      }
+                                        }
+                                    %> 
+                                </select>   
+                                <br> 
 
                             </div>
 

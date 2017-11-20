@@ -20,11 +20,11 @@ import java.util.List;
  *
  * @author Labin
  */
-public class mantenimientoDAO {
+public class mantenimientoCoDAO {
 
     private Connection connection;
 
-    public mantenimientoDAO() throws SQLException {
+    public mantenimientoCoDAO() throws SQLException {
         connection = DbUtil.getConnection();
     }
 

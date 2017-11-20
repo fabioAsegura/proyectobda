@@ -1,3 +1,5 @@
+<%@page import="Model.Categoria"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,29 +45,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li class="active"><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+         <%@include file="Header.jsp" %>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -115,6 +95,23 @@
                                     <option>False</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="tipo">Categoria</label>
+                                <select class="form-control" name="categoria">
+                                     <%
+                                        if (request.getAttribute("categoria") != null) {
+                                            ArrayList<Categoria> array = (ArrayList<Categoria>) request.getAttribute("categoria");
+                                            for (Categoria a : array) {
+                                    %> 
+                                    <option value="<%=a.getNombre()%>"><%=a.getNombre()%></option> 
+                                    <%      }
+                                        }
+                                    %> 
+                                </select>
+                            </div>
+                                <br>
+                                <br>
+                                
                             <div class="form-group">
                                 <label for="tipo">Calificación</label>
                                 <select class="form-control" name="calificacion">

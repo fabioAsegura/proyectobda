@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Supervisor"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,29 +45,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li class="active"><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+        <%@include file="Header.jsp"%>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -77,16 +57,18 @@
                     <p></p>
                     <hr>
                     <div class="container">   
-                        <form class="form-inline">
+                        <form class="form-inline" action="BuscarSupervisores" method="GET">
 
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label for="idequipo">ID Supervisor:</label>
-                                <input  class="form-control" id="idequipo">
+                                <input  class="form-control" name="idSupervisor">
                             </div>
 
                             <br>
                             <div class="span12">&nbsp;</div>
                             <button type="submit" class="btn btn-default">Enviar</button>
+                            <button onclick="window.location.href = 'Supervisorr'" type="button" type="button" class="btn-sm btn-warning">Volver</button>
+
                         </form>
                     </div>
                     <div class="span12">&nbsp;</div>
@@ -100,6 +82,24 @@
 
 
                             </tr>
+                            <% if (request.getAttribute("listaSupervisoresBusqueda") != null) {
+                                    ArrayList<Supervisor> list = (ArrayList<Supervisor>) request.getAttribute("listaSupervisoresBusqueda");
+                                    if (list != null)
+                                        for (Supervisor aux : list) {
+
+
+                            %>
+                            <tr>
+                                <td><%=aux.getId()%></td>
+                                <td><%=aux.getNombre()%></td>
+                                <td><%=aux.getApellido()%></td>
+                                <td><%=aux.getFechaEntrada()%></td>
+
+
+                            </tr>
+                            <% }
+                                }
+                            %>
                         </table>
                     </div>
                 </div>

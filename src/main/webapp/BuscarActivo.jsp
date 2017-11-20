@@ -1,3 +1,5 @@
+<%@page import="Model.Activo"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,29 +45,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li class="active"><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+        <%@include file="Header.jsp" %>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -77,16 +57,18 @@
                     <p></p>
                     <hr>
                     <div class="container">   
-                        <form class="form-inline">
+                        <form class="form-inline" action="BuscarActivos" method="GET">
 
-                            <div class="form-group" action="BuscarActivo" method="POST">
+                            <div class="form-group">
                                 <label for="idequipo">ID Activo:</label>
-                                <input  class="form-control" id="idequipo">
+                                <input  class="form-control" name="idActivo">
                             </div>
 
                             <br>
                             <div class="span12">&nbsp;</div>
                             <button type="submit" class="btn btn-default">Enviar</button>
+                            <button onclick="window.location.href = 'Activoo'" type="button" type="button" class="btn-sm btn-warning">Volver</button>
+
                         </form>
                     </div>
                     <div class="span12">&nbsp;</div>
@@ -101,7 +83,32 @@
                                 <th>Estado</th>
                                 <th>Prestado</th>
                                 <th>Calificacion</th>
+                                <th>Categoria</th>
                             </tr>
+                            <% if (request.getAttribute("listaActivosBusqueda") != null) {
+                                ArrayList<Activo> list = (ArrayList<Activo>) request.getAttribute("listaActivosBusqueda");
+                                if (list != null)
+                                    for (Activo activo : list) {
+
+
+                            %>
+                            <tr>
+                                <td><%=activo.getId_activo()%></td>
+                                <td><%=activo.getTipo()%></td>
+                                <td><%=activo.getFabricante()%></td>
+                                <td><%=activo.getFecha_compra()%></td>
+                                <td><%=activo.getUltimo_mantenimiento()%></td>
+                                <td><%=activo.getEstado()%></td>
+                                <td><%=activo.getPrestado()%></td>
+                                <td><%=activo.getCalificacion()%></td>
+                                <td><%=activo.getCategoria()%></td>
+
+                                <td>
+                                </td>
+                            </tr>
+                            <% }
+                                }
+                            %>
                         </table>
                     </div>
                 </div>

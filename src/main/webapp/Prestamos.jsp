@@ -1,4 +1,7 @@
+<%@page import="Model.Prestamo"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <title>Prestamos</title>
@@ -43,29 +46,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li  class="active"><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+        <%@include file="Header.jsp"%>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -83,13 +64,47 @@
                     <div class="container">           
                         <table class="table table-striped">
                             <tr>
-                                <th>ID Activo</th>
-                                <th>ID solicitante</th>
-                                <th>Tipo</th>
-                                <th>Fecha Salida</th>
-                                <th>Fecha Entrada</th>
                                 <th>ID Prestamo</th>
+                                <th>Fecha Entrada</th>
+                                <th>Fecha salida</th>
+                                <th>Tipo</th>
+                                <th>Activo 1</th>
+                                <th>Activo 2</th>
+                                <th>Activo 3</th>
+                                <th>Activo 4</th>
+                                <th>Activo 5</th>
+                               <th>ID Solicitante</th>
+                               <th>ID Trabajador</th>
+                                
+                                
                             </tr>
+                              <% if (request.getAttribute("listaPrestamos") != null) {
+                                    ArrayList<Prestamo> list = (ArrayList<Prestamo>) request.getAttribute("listaPrestamos");
+                                    if (list != null)
+                                        for (Prestamo prestamo : list) {
+
+
+                            %>
+                            <tr>
+                                <td><%=prestamo.getId_prestamo()%></td>
+                                <td><%=prestamo.getFecha_entrada()%></td>
+                                <td><%=prestamo.getFecha_salida()%></td>
+                                <td><%=prestamo.getTipo()%></td>
+                                <td><%=prestamo.getActivo1()%></td>
+                                <td><%=prestamo.getActivo2()%></td>
+                                <td><%=prestamo.getActivo3()%></td>
+                                <td><%=prestamo.getActivo4()%></td>
+                                <td><%=prestamo.getActivo5()%></td>
+                                <td><%=prestamo.getId_solicitante()%></td>
+                                <td><%=prestamo.getId_trabajador()%></td>
+
+                                <td>
+                                <button onclick="window.location.href = 'EditarPrestamoss?id_prestamo=<%=prestamo.getId_prestamo()%>&fecha_entrada=<%=prestamo.getFecha_entrada()%>&fecha_salida=<%=prestamo.getFecha_salida()%>&activo1=<%=prestamo.getActivo1()%>&activo2=<%=prestamo.getActivo2()%>&activo3=<%=prestamo.getActivo3()%>&activo4=<%=prestamo.getActivo4()%>&activo5=<%=prestamo.getActivo5()%>&id_solicitante=<%=prestamo.getId_solicitante()%>&id_trabajador=<%=prestamo.getId_trabajador()%>'" class="btn btn-info">Editar</button>
+                                </td>
+                            </tr>
+                            <% }
+                                }
+                            %>
                         </table>
                     </div>
                     <hr>

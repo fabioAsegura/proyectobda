@@ -9,6 +9,7 @@ import DAO.ActivoDAO;
 import Model.Activo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -33,22 +34,7 @@ public class Activoo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AñadirActivos</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AñadirActivos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+ 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -73,8 +59,10 @@ public class Activoo extends HttpServlet {
 
         } catch (SQLException ex) {
             Logger.getLogger(Activoo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Activoo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     @Override
@@ -89,15 +77,18 @@ public class Activoo extends HttpServlet {
             String estado = (String) request.getParameter("estado");
             String prestado = (String) request.getParameter("prestado");
             int calificacion = Integer.parseInt(request.getParameter("calificacion"));
+            String categoria = (String) request.getParameter("categoria");
 
             ActivoDAO dao = new ActivoDAO();
-            Activo tab = new Activo(id_activo, tipo, fabricante, fecha_compra, mantenimiento, estado, prestado, calificacion);
+            Activo tab = new Activo(id_activo, tipo, fabricante, fecha_compra, mantenimiento, estado, prestado, calificacion,categoria);
 
             dao.addActivo(tab);
 
             response.sendRedirect("Activoo");
 
         } catch (SQLException ex) {
+            Logger.getLogger(Activoo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(Activoo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

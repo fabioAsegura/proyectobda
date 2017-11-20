@@ -43,29 +43,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li  class="active"><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
+       <%@include file="Header.jsp"%>
 
         <div class="container-fluid text-center">    
             <div class="row content">
@@ -77,33 +55,54 @@
                     <p></p>
                     <hr>
                     <div class="container">   
-                        <form class="form-inline">
+                        <form class="form-inline" action="Prestamoo" method="POST">
                             <div class="form-group">
-                                <label for="Idactivo">ID Activo:</label>
-                                <input class="form-control" id="Idactivo">
+                                <label for="fecha_entrada">Fecha Entrada:</label>
+                                <input class="form-control" name="fecha_entrada">
                             </div>
                             <div class="form-group">
-                                <label for="solicitante">ID Solicitante:</label>
-                                <input  class="form-control" id="solicitante">
+                                <label for="fecha_salida">Fecha Salida:</label>
+                                <input  class="form-control" name="fecha_salida">
                             </div>
-                            <div class="form-group">
-                                <label for="fechae">Fecha Entrada:</label>
-                                <input  class="form-control" id="fechae">
-                            </div>
-                            <div class="span12">&nbsp;</div>
-                            <div class="form-group">
-                                <label for="fechas">Fecha Salida:</label>
-                                <input  class="form-control" id="fechas">
-                                <div class="form-group">
+                          <div class="form-group">
                                     <label for="tipo">Tipo</label>
-                                    <select class="form-control" id="tipo">
+                                    <select class="form-control" name="tipo">
                                         <option>Interno</option>
                                         <option>Externo</option>
                                     </select>
                                 </div>
+                            <div class="span12">&nbsp;</div>
+                            <div class="form-group">
+                                <label for="activo1">Activo 1:</label>
+                                <input  class="form-control" name="activo1">
+                               
                                 <div class="form-group">
-                                    <label for="estado">ID Prestamo:</label>
-                                    <input  class="form-control" id="estado">
+                                    <label for="activo2">Activo 2:</label>
+                                    <input  class="form-control" name="activo2">
+                                </div>
+                                   <div class="form-group">
+                                    <label for="activo3">Activo 3:</label>
+                                    <input  class="form-control" name="activo3">
+                                </div>
+                                
+                                   <div class="form-group">
+                                    <label for="activo4">Activo 4:</label>
+                                    <input  class="form-control" name="activo4">
+                                </div>
+                                <div class="span12">&nbsp;</div>
+                                   <div class="form-group">
+                                    <label for="activo5">Activo 5:</label>
+                                    <input  class="form-control" name="activo5">
+                                </div>
+                                 
+                                   <div class="form-group">
+                                    <label for="id_solicitante">ID Solicitante:</label>
+                                    <input  class="form-control" name="id_solicitante">
+                                </div>
+                                 
+                                   <div class="form-group">
+                                    <label for="id_trabajador">ID Trabajador:</label>
+                                    <input  class="form-control" name="id_trabajador">
                                 </div>
                                 <br>
                                 <div class="span12">&nbsp;</div>

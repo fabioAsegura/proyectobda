@@ -43,30 +43,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">Laboratorio</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li><a href="Prestamos.jsp">Prestamos</a></li>
-                        <li><a href="Activoo">Activos</a></li>
-                        <li><a href="Solicitantes.jsp">Solicitante</a></li>
-                        <li class="active"><a href="Auxiliar.jsp">Auxiliar</a></li>
-                        <li><a href="Supervisor.jsp">Supervisor</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
+       <%@include file="Header.jsp"%>
         <div class="container-fluid text-center">    
             <div class="row content">
                 <div class="col-sm-2 sidenav">
@@ -77,32 +54,36 @@
                     <p></p>
                     <hr>
                     <div class="container">   
-                        <form class="form-inline">
+                        <form class="form-inline" action="Auxiliarr" method="POST">
                             <div class="form-group">
                                 <label for="idequipo">ID Auxiliar:</label>
-                                <input  class="form-control" id="idequipo">
+                                <input  class="form-control" name="idAuxiliar">
                             </div>
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input  class="form-control" id="nombre">
+                                <input  class="form-control" name="nombre">
                             </div>
                             <div class="form-group">
                                 <label for="calificacion">Apellido:</label>
-                                <input  class="form-control" id="calificacion">
+                                <input  class="form-control" name="apellido">
                             </div>
                             <div class="span12">&nbsp;</div>
                             <div class="form-group">
                                 <label for="fechaC">Fecha Entrada:</label>
-                                <input  class="form-control" id="fechaC">
+                                <input  class="form-control" name="fechaE">
                             </div>
                             <div class="form-group">
                                 <label for="prestaso">Turno:</label>
-                                <input  class="form-control" id="prestado">
+                                <input  class="form-control" name="turno">
+                            </div>
+                            <div class="form-group">
+                                <label for="prestaso">ID Supervisor:</label>
+                                <input  class="form-control" name="idSupervisor">
                             </div>
 
                             <br>
                             <div class="span12">&nbsp;</div>
-                            <button type="submit" class="btn btn-default">Enviar</button>
+                            <button type="submit" class="btn btn-default" name="Enivar">Enviar</button>
                         </form>
                     </div>
                 </div>
