@@ -73,7 +73,7 @@
                 <div class="col-sm-2 sidenav">
                 </div>
                 <div class="col-sm-8 text-left"> 
-                    <h1>Mantenimientos Activos No Prestados</h1>
+                    <h1>Mantenimientos</h1>
                     <div class="span12">&nbsp;</div>
                     <button onclick="window.location.href = 'NuevoPrestamo.jsp'" type="button" class="btn-sm btn-success">Nuevo Mantenimiento</button>
                     
@@ -88,6 +88,23 @@
                                 <th>Piezas cambiadas</th>
                                 <th>Descripcion</th>
                             </tr>
+                             <% if (request.getAttribute("listaMantenimiento") != null) {
+                                    ArrayList<mantenimientos> list = (ArrayList<mantenimientos>) request.getAttribute("listaMantenimiento");
+                                    if (list != null)
+                                        for (mantenimientos mantenimiento : list) {
+
+
+                            %>
+                            <tr>
+                                <td><%=mant.getId()%></td>
+                                <td><%=mant.getIdActivo()%></td>
+                                <td><%=mant.getDescripcion%></td>
+                                <td><%=mant.getPiezasCambiadas%></td>
+                                
+                            </tr>
+                            <% }
+                                }
+                             %>
                         </table>
                     </div>
                     <hr>
