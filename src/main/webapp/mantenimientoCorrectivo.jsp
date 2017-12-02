@@ -100,8 +100,8 @@
                             <tr>
                                 <td><%=mant.getId()%></td>
                                 <td><%=mant.getIdActivo()%></td>
-                                <td><%=mant.getDescripcion%></td>
-                                <td><%=mant.getPiezasCambiadas%></td>
+                                <td><%=mant.getDescripcion()%></td>
+                                <td><%=mant.getPiezasCambiadas()%></td>
                                 
                             </tr>
                             <% }
